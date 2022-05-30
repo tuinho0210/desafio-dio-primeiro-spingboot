@@ -30,7 +30,14 @@ public class ProdutoResource {
 			List<Produto> list = produtoRepository.findAll();
 			return ResponseEntity.ok().body(list);
 		}
-		@GetMapping(value = "/{id}")
+		
+		@GetMapping("/{count}")
+		public ResponseEntity<Long> count(){
+			long count = produtoRepository.count();
+			return ResponseEntity.ok().body(count);
+		}
+		
+		@GetMapping("/{id}")
 		public ResponseEntity<Produto> findById(@PathVariable Long id) {
 			Produto obj = produtoRepository.findById(id).get();
 			return ResponseEntity.ok().body(obj);
@@ -47,4 +54,5 @@ public class ProdutoResource {
 				return ResponseEntity.ok(produto);
 			}
 			
+
 }
